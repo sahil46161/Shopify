@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+//This is a test for branch protection rules
+
 struct ContentView: View {
     @Namespace private var namespace
     @State var isClicked = false

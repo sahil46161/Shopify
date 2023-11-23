@@ -101,11 +101,13 @@ extension DashboardView{
                                     Text("\(cartModel.cartItems.count > 0 ? "\(cartModel.cartItems.count)" : "")")
                                         .matchedGeometryEffect(id: "count", in: namespace)
                                         .offset(x:2,y : -24)
+                                        .foregroundColor(.red)
 
                                 }else{
                                     Text("\(cartModel.cartItems.count > 0 ? "\(cartModel.cartItems.count)" : "")")
                                         .matchedGeometryEffect(id: "count", in: namespace)
                                         .offset(x:2,y : -16)
+                                        .foregroundColor(.red)
                                         
 
                                 }

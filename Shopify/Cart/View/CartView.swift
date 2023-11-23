@@ -16,6 +16,11 @@ struct CartView: View {
 //    @StateObject var cartModel = CartViewModel()
     @EnvironmentObject var cartModel: CartViewModel
     
+    @State private var showAlertForAll = false
+    @State private var showAlertForSingleDelete = false
+    
+    
+    
     var body: some View {
         NavigationView(content: {
             VStack{
@@ -36,12 +41,17 @@ struct CartView: View {
                     
                     Spacer()
                     Button{
-                        
-                        
+                        showAlertForAll = true
                         
                     } label: {
                        Image("trash")
                             .foregroundStyle(.black)
+                    }
+                    .alert("Are you sure want to delete all items from your cart?", isPresented: $showAlertForAll) {
+                        Button("Clear", role: .destructive) {
+                            cartModel.cartItems.removeAll()
+                        }
+//                        Button("Cancel",role:.none){}
                     }
                     
                 }.padding(.horizontal, 16)
@@ -106,7 +116,7 @@ struct CartView: View {
                                     }
                                     Spacer()
                                     Button{
-                                        cartModel.cartItems = cartModel.cartItems.filter{$0.product?.id !=                                             cartModel.cartItems[item].product?.id}
+                                        showAlertForSingleDelete = true
                                         
                                         
                                     } label: {
@@ -114,6 +124,16 @@ struct CartView: View {
                                             .resizable()
                                             .frame(width: 20, height: 20)
                                             .foregroundStyle(Color.black.opacity(0.5))
+                                    }
+                                    .alert("Are you sure want to delete \(cartModel.cartItems[item].product?.title ?? "")?", isPresented: $showAlertForSingleDelete) {
+                                        Button("Delete", role: .destructive) {
+                                            cartModel.cartItems = cartModel.cartItems.filter{$0.product?.id !=                                             cartModel.cartItems[item].product?.id}
+                                        }
+                                        
+                                        Button("Cancel", role: .cancel) {
+                                            //
+                                        }
+
                                     }
                                    
                                 }).padding(.vertical,8)

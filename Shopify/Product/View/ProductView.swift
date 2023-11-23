@@ -57,6 +57,7 @@ struct ProductView: View {
                             Text("\(cartModel.cartItems.count > 0 ? "\(cartModel.cartItems.count)" : "")")
                                
                                 .offset(x:2,y : -16)
+                                .foregroundColor(.red)
                             Image("cart")
                                 .resizable()
                                 .frame(width: 24, height: 24)

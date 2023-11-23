@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "shimmerview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mercari/ShimmerView.git",
+      "state" : {
+        "revision" : "f34a268db28b49231ea236dafcd976507cef9dfd",
+        "version" : "0.5.1"
+      }
+    }
+  ],
+  "version" : 2
+}

@@ -6,13 +6,12 @@
 //
 
 import SwiftUI
-import Shimmer
 
 struct DashboardView: View {
     
     @State private var searchText = ""
     @State private var nowSearch : Int? = nil
-    private let categories = ["Apple","Boat","Skull Candy","MI","Samsung","OnePlus+"]
+    private let categories = ["A4Apple","Boat","Skull Candy","MI","Samsung","OnePlus+"]
     @State private var selectedCategory = "Apple"
     
     private let earphoneData = ["RMA Headphone 12C","TMA-2 Modular Headphone","TMA-4 Modular Headphone","TMA-245 ECS Headphone","R12A"]

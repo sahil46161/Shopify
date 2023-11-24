@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		BA0BE91F2B073F2100F9B39E /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0BE91E2B073F2100F9B39E /* SearchView.swift */; };
 		BA1623012B0F93CB0099DDFF /* cart.json in Resources */ = {isa = PBXBuildFile; fileRef = BA1623002B0F93CB0099DDFF /* cart.json */; };
+		BA1CE5772B10A16900921F48 /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1CE5762B10A16900921F48 /* SideMenu.swift */; };
+		BA1CE5792B10A5BD00921F48 /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1CE5782B10A5BD00921F48 /* SideMenuView.swift */; };
+		BA1CE57B2B10AD6A00921F48 /* Homeview.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1CE57A2B10AD6A00921F48 /* Homeview.swift */; };
 		BA2172C12B05E33500AC51ED /* ShopifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2172C02B05E33500AC51ED /* ShopifyApp.swift */; };
 		BA2172C32B05E33500AC51ED /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2172C22B05E33500AC51ED /* ContentView.swift */; };
 		BA2172C52B05E33600AC51ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA2172C42B05E33600AC51ED /* Assets.xcassets */; };
@@ -77,6 +80,9 @@
 /* Begin PBXFileReference section */
 		BA0BE91E2B073F2100F9B39E /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		BA1623002B0F93CB0099DDFF /* cart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cart.json; sourceTree = "<group>"; };
+		BA1CE5762B10A16900921F48 /* SideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
+		BA1CE5782B10A5BD00921F48 /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
+		BA1CE57A2B10AD6A00921F48 /* Homeview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Homeview.swift; sourceTree = "<group>"; };
 		BA2172BD2B05E33500AC51ED /* Shopify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shopify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA2172C02B05E33500AC51ED /* ShopifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopifyApp.swift; sourceTree = "<group>"; };
 		BA2172C22B05E33500AC51ED /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -257,6 +263,9 @@
 				BAD5AF772B07A2AF002FC187 /* OverlayModifier.swift */,
 				BAD5AF792B07A443002FC187 /* BottomPopupView.swift */,
 				BA8898A22B0C92A300DC0886 /* CustomShimmerView.swift */,
+				BA1CE5762B10A16900921F48 /* SideMenu.swift */,
+				BA1CE5782B10A5BD00921F48 /* SideMenuView.swift */,
+				BA1CE57A2B10AD6A00921F48 /* Homeview.swift */,
 			);
 			path = BaseView;
 			sourceTree = "<group>";
@@ -573,18 +582,21 @@
 				BA2173152B061BFD00AC51ED /* SignupView.swift in Sources */,
 				BABE93CD2B0E24D500321535 /* ProductViewModal.swift in Sources */,
 				BA8898A12B0C922E00DC0886 /* BaseExtension.swift in Sources */,
+				BA1CE57B2B10AD6A00921F48 /* Homeview.swift in Sources */,
 				BA2173182B062A3400AC51ED /* DashboardView.swift in Sources */,
 				BA2172EC2B05E70600AC51ED /* LoginView.swift in Sources */,
 				BA2172C32B05E33500AC51ED /* ContentView.swift in Sources */,
 				BA2172F22B05E7BB00AC51ED /* BackgroundBGView.swift in Sources */,
 				BABE93CF2B0E251800321535 /* ProductCommentModal.swift in Sources */,
 				BA2173132B060B4C00AC51ED /* ColorExtension.swift in Sources */,
+				BA1CE5792B10A5BD00921F48 /* SideMenuView.swift in Sources */,
 				BA69C5B02B0B5CC00085A2C4 /* ProductView.swift in Sources */,
 				BAD3B9722B0F32A0002313D6 /* CartViewModel.swift in Sources */,
 				BA8898962B0C82EC00DC0886 /* CustomImageView.swift in Sources */,
 				BA21731A2B06310C00AC51ED /* ProfileImageView.swift in Sources */,
 				BA2172C12B05E33500AC51ED /* ShopifyApp.swift in Sources */,
 				BAD5AF7A2B07A443002FC187 /* BottomPopupView.swift in Sources */,
+				BA1CE5772B10A16900921F48 /* SideMenu.swift in Sources */,
 				BA8898942B0C7C2500DC0886 /* DashboardVM.swift in Sources */,
 				BA69C5B52B0B99BC0085A2C4 /* CartView.swift in Sources */,
 				BA2172EF2B05E72700AC51ED /* Constant.swift in Sources */,

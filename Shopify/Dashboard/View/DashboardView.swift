@@ -31,9 +31,13 @@ struct DashboardView: View {
     
     @State private var updateBounceCount = false
 
-    
+    @Binding var presentSideMenu: Bool
+
+
 
     var body: some View {
+        
+       
         NavigationView(content: {
             
             dashboardView
@@ -50,6 +54,7 @@ struct DashboardView: View {
         
         .animation(.default, value: showProductView)
         .environmentObject(cartModel)
+        
     }
     
     
@@ -76,6 +81,7 @@ extension DashboardView{
                 VStack{
                     HStack{
                         Button{
+                            presentSideMenu.toggle()
                             
                         } label: {
                             Image("menu")
@@ -450,6 +456,7 @@ extension DashboardView{
                     Spacer()
                 }
                 
+                
                // Spacer()
             }
         }
@@ -459,5 +466,5 @@ extension DashboardView{
 
 
 #Preview {
-    DashboardView(cartModel: CartViewModel())
+    DashboardView(cartModel: CartViewModel(), presentSideMenu: .constant(false))
 }

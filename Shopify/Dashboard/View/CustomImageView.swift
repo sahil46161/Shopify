@@ -20,7 +20,7 @@ struct ImageView: View {
 //        Image(uiImage: imageViewModel.image ?? UIImage())
 //            .resizable()
 //            .scaledToFill()
-        Image("random2")
+        Image("random1")
             .resizable()
             .scaledToFill()
     }

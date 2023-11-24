@@ -63,7 +63,7 @@ struct SignupView: View {
                                 
                                 HStack{
                                     
-                                    NavigationLink(destination: DashboardView(cartModel: CartViewModel()), tag: 1, selection: $nowLogin) {
+                                    NavigationLink(destination: HomeView(), tag: 1, selection: $nowLogin) {
                                         Button(action: {
                                             self.nowLogin = 1
                                         }) {

@@ -145,7 +145,7 @@ struct SearchView: View {
                         .listRowInsets(EdgeInsets())
                         .background(
                             NavigationLink(
-                                destination: SearchResultView(),
+                                destination: SearchResultView(presentSideMenu: .constant(false)),
                                 isActive: $openSearchView) {
                                     EmptyView()
                                 }

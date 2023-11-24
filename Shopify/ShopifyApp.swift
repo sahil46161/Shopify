@@ -15,3 +15,7 @@ struct ShopifyApp: App {
         }
     }
 }
+
+#Preview{
+    ContentView()
+}

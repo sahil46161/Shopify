@@ -32,142 +32,149 @@ struct ProductView: View {
     
     var body: some View {
         NavigationView(content: {
-            VStack{
-                HStack{
-                    Button{
-                       // presentationMode.wrappedValue.dismiss()
-                        self.isShowingDetail = false
-                    } label: {
-                        Image("cross")
-                            .resizable()
-                            .frame(width: 32, height: 32)
-                    }
-                    Spacer()
-                    NavigationLink(
-                        destination: CartView(isShowingDetail: $isShowingDetail, animation: animation),
-                        isActive: $openCart) {
-                            EmptyView()
-                        }
-                    Button{
-                       openCart = true
-                        
-                    } label: {
-                        
-                        ZStack{
-                            Text("\(cartModel.cartItems.count > 0 ? "\(cartModel.cartItems.count)" : "")")
-                               
-                                .offset(x:2,y : -16)
-                                .foregroundColor(.red)
-                            Image("cart")
-                                .resizable()
-                                .frame(width: 24, height: 24)
+            
+            ZStack(content: {
+                if openCart{
+                    CartView(isShowingDetail: $openCart, animation: animation)
+                        .matchedGeometryEffect(id: "Cart", in: animation)
+                }else{
+                    VStack{
+                        HStack{
+                            Button{
+                               // presentationMode.wrappedValue.dismiss()
+                                self.isShowingDetail = false
+                            } label: {
+                                Image("cross")
+                                    .resizable()
+                                    .frame(width: 32, height: 32)
+                            }
+                            Spacer()
+                            Button{
+                                withAnimation {
+                                    openCart = true
+                                }
+                            } label: {
+                                
+                                ZStack{
+                                    Text("\(cartModel.cartItems.count > 0 ? "\(cartModel.cartItems.count)" : "")")
+                                       
+                                        .offset(x:2,y : -16)
+                                        .foregroundColor(.red)
+                                    Image("cart")
+                                        .resizable()
+                                        .frame(width: 24, height: 24)
+                                        .matchedGeometryEffect(id: "Cart", in: animation)
 
-                        }
-                    }
-                    
-                }.padding(.horizontal, 24)
-                
-                ScrollView (showsIndicators: false){
-                    HStack{
-                        Text("USD 350")
-                            .font(.custom(Constant.AppFonts.Roboto_Regular, size: 16))
-                            .foregroundStyle(Color.appColor.defaultGreen)
-                        Spacer()
-                    }.padding(.top,32).padding(.horizontal, 16)
-                    HStack{
-                        Text(selectedProduct?.title ?? "TMA")
-                            .font(.custom(Constant.AppFonts.Roboto_Bold, size: 30))
-//                                .matchedGeometryEffect(id: selectedProduct?.title ?? "" , in: animation)
-                        Spacer()
-                    }.padding(.top,4).padding(.horizontal, 16)
-                    
-                    HStack {
-                        VStack(content: {
-                            Button(action: {
-                                withAnimation {
-                                    selectedSegment = 1
                                 }
-                                
-                            }, label: {
-                                VStack(content: {
-                                    Text("Overview")
-                                        .foregroundStyle(Color.black)
-                                    if selectedSegment == 1{
-                                        VStack(content: {
-                                            
-                                        }).frame(width:  24,height: 3)
-                                            .background(Rectangle().fill(Color.appColor.defaultGreen).cornerRadius(radius: 2))
-                                    }
-                                })
-                                //.matchedGeometryEffect(id: "Overview", in: namespace)
-                            })
+                            }
                             
-                        })
-                        Spacer()
-                        VStack(content: {
-                            Button(action: {
-                                withAnimation {
-                                    
-                                    selectedSegment = 2
-                                }
-                                
-                            }, label: {
+                        }.padding(.horizontal, 24)
+                        
+                        ScrollView (showsIndicators: false){
+                            HStack{
+                                Text("USD 350")
+                                    .font(.custom(Constant.AppFonts.Roboto_Regular, size: 16))
+                                    .foregroundStyle(Color.appColor.defaultGreen)
+                                Spacer()
+                            }.padding(.top,32).padding(.horizontal, 16)
+                            HStack{
+                                Text(selectedProduct?.title ?? "TMA")
+                                    .font(.custom(Constant.AppFonts.Roboto_Bold, size: 30))
+        //                                .matchedGeometryEffect(id: selectedProduct?.title ?? "" , in: animation)
+                                Spacer()
+                            }.padding(.top,4).padding(.horizontal, 16)
+                            
+                            HStack {
                                 VStack(content: {
-                                    Text("Features")
-                                        .foregroundStyle(Color.black)
-                                    if selectedSegment == 2{
-                                        VStack(content: {
-                                            
-                                        }).frame(width:  24,height: 3)
-                                            .background(Rectangle().fill(Color.appColor.defaultGreen).cornerRadius(radius: 2))
-                                    }else{
+                                    Button(action: {
+                                        withAnimation {
+                                            selectedSegment = 1
+                                        }
                                         
-                                    }
-                                })
-//                                    .matchedGeometryEffect(id: "Features", in: namespace)
-                            })
-                            
-                        })
-                        Spacer()
-                        VStack(content: {
-                            Button(action: {
-                                withAnimation {
-                                    selectedSegment = 3
-                                }
-                            }, label: {
-                                VStack(content: {
-                                    Text("Specification")
-                                        .foregroundStyle(Color.black)
-                                    if selectedSegment == 3{
+                                    }, label: {
                                         VStack(content: {
-                                            
-                                        }).frame(width:  24,height: 3)
-                                            .background(Rectangle().fill(Color.appColor.defaultGreen).cornerRadius(radius: 2))
-                                    }
+                                            Text("Overview")
+                                                .foregroundStyle(Color.black)
+                                            if selectedSegment == 1{
+                                                VStack(content: {
+                                                    
+                                                }).frame(width:  24,height: 3)
+                                                    .background(Rectangle().fill(Color.appColor.defaultGreen).cornerRadius(radius: 2))
+                                            }
+                                        })
+                                        //.matchedGeometryEffect(id: "Overview", in: namespace)
+                                    })
+                                    
                                 })
-//                                    .matchedGeometryEffect(id: "Specification", in: namespace)
-                            })
+                                Spacer()
+                                VStack(content: {
+                                    Button(action: {
+                                        withAnimation {
+                                            
+                                            selectedSegment = 2
+                                        }
+                                        
+                                    }, label: {
+                                        VStack(content: {
+                                            Text("Features")
+                                                .foregroundStyle(Color.black)
+                                            if selectedSegment == 2{
+                                                VStack(content: {
+                                                    
+                                                }).frame(width:  24,height: 3)
+                                                    .background(Rectangle().fill(Color.appColor.defaultGreen).cornerRadius(radius: 2))
+                                            }else{
+                                                
+                                            }
+                                        })
+        //                                    .matchedGeometryEffect(id: "Features", in: namespace)
+                                    })
+                                    
+                                })
+                                Spacer()
+                                VStack(content: {
+                                    Button(action: {
+                                        withAnimation {
+                                            selectedSegment = 3
+                                        }
+                                    }, label: {
+                                        VStack(content: {
+                                            Text("Specification")
+                                                .foregroundStyle(Color.black)
+                                            if selectedSegment == 3{
+                                                VStack(content: {
+                                                    
+                                                }).frame(width:  24,height: 3)
+                                                    .background(Rectangle().fill(Color.appColor.defaultGreen).cornerRadius(radius: 2))
+                                            }
+                                        })
+        //                                    .matchedGeometryEffect(id: "Specification", in: namespace)
+                                    })
+                                    
+                                })
+                                
+                                
+                            }.padding()
                             
-                        })
-                        
-                        
-                    }.padding()
-                    
-                    if selectedSegment == 1{
-                        OverviewScreen
-//                                .matchedGeometryEffect(id: self.nameSpaceID, in: namespace)
-                    }else if selectedSegment == 2{
-                        featuresView
-//                                .matchedGeometryEffect(id: "Features", in: namespace)
-                    }else{
-                        specificationView
-//                                .matchedGeometryEffect(id: "Specification", in: namespace)
+                            if selectedSegment == 1{
+                                OverviewScreen
+        //                                .matchedGeometryEffect(id: self.nameSpaceID, in: namespace)
+                            }else if selectedSegment == 2{
+                                featuresView
+        //                                .matchedGeometryEffect(id: "Features", in: namespace)
+                            }else{
+                                specificationView
+        //                                .matchedGeometryEffect(id: "Specification", in: namespace)
+                            }
+                            
+                        }
+                        Spacer()
                     }
-                    
                 }
-                Spacer()
-            }
+            })
+
         }).navigationBarBackButtonHidden(true)
+            .animation(.default, value: openCart)
     
 //            .navigationBarTitleDisplayMode(.inline)
 //                 .navigationViewStyle(.stack)
@@ -306,11 +313,19 @@ extension ProductView{
                 
                 VStack{
                     Button(action: {
-                       
+                        if cartModel.cartItems.filter({$0.product?.id == selectedProduct?.id}).count > 0 {
+                            
+                        }else{
+                            withAnimation {
+                                cartModel.cartItems.append(CartItemsModel(id: selectedProduct?.id ?? 0, count: 1, product: selectedProduct))
+                            }
+                        }
+                        
                     }) {
                         HStack {
                             Spacer()
-                            Text("Add To Cart").foregroundColor(.white)
+                            Text(cartModel.cartItems.filter{$0.product?.id == selectedProduct?.id}.count > 0 ? "Added in Cart" : "Add To Cart")
+                                .foregroundColor(.white)
                             Spacer()
                         }.padding()
                             .background(Rectangle().fill(Color.appColor.defaultGreen).cornerRadius(12))

@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import Lottie
 
 struct DashboardView: View {
     
     @State private var searchText = ""
     @State private var nowSearch : Int? = nil
-    private let categories = ["A4Apple","Boat","Skull Candy","MI","Samsung","OnePlus+"]
+    private let categories = ["Apple","Boat","Skull Candy","MI","Samsung","OnePlus+"]
     @State private var selectedCategory = "Apple"
     
     private let earphoneData = ["RMA Headphone 12C","TMA-2 Modular Headphone","TMA-4 Modular Headphone","TMA-245 ECS Headphone","R12A"]
@@ -30,9 +31,13 @@ struct DashboardView: View {
     
     @State private var updateBounceCount = false
 
-    
+    @Binding var presentSideMenu: Bool
+
+
 
     var body: some View {
+        
+       
         NavigationView(content: {
             
             dashboardView
@@ -49,6 +54,7 @@ struct DashboardView: View {
         
         .animation(.default, value: showProductView)
         .environmentObject(cartModel)
+        
     }
     
     
@@ -75,6 +81,7 @@ extension DashboardView{
                 VStack{
                     HStack{
                         Button{
+                            presentSideMenu.toggle()
                             
                         } label: {
                             Image("menu")
@@ -102,15 +109,20 @@ extension DashboardView{
                                         .matchedGeometryEffect(id: "count", in: namespace)
                                         .offset(x:2,y : -24)
                                         .foregroundColor(.red)
+                                        .font(.custom(Constant.AppFonts.Roboto_Medium, size: 14))
 
                                 }else{
                                     Text("\(cartModel.cartItems.count > 0 ? "\(cartModel.cartItems.count)" : "")")
                                         .matchedGeometryEffect(id: "count", in: namespace)
                                         .offset(x:2,y : -16)
-                                        .foregroundColor(.red)
-                                        
+                                        .foregroundColor(Color.red)
+                                        .font(.custom(Constant.AppFonts.Roboto_Medium, size: 14))
+
 
                                 }
+//                                LottieView(animation: .named("cart"))
+//                                    .looping()
+//                                    .frame(width: 38,height:38)
                                 Image("cart")
                                     .matchedGeometryEffect(id: "Cart", in: animation)
                             })
@@ -274,11 +286,11 @@ extension DashboardView{
                                                                 if cartModel.cartItems.filter({$0.product?.id == product.id}).count > 0{
                                                                     print("already added in cart")
                                                                 }else{
-                                                                    self.cartModel.cartItems.append(CartItemsModel(id: product.id, count: 1, product: product))
-                                                                        cartModel.count += 1
-                                                                    
-                                                                    
-                                                                    self.selectedProduct = product
+                                                                    withAnimation {
+                                                                        self.cartModel.cartItems.append(CartItemsModel(id: product.id, count: 1, product: product))
+                                                                        self.selectedProduct = product
+                                                                    }
+                                                                 
     //                                                                showCartView = false
     //                                                                withAnimation {
     //                                                                    showProductView = true
@@ -325,7 +337,7 @@ extension DashboardView{
                                                 .cornerRadius(8)
                                                 
                                                 .id(product.title)
-                                                .matchedGeometryEffect(id: product.title, in: animation)
+//                                                .matchedGeometryEffect(id: product.title, in: animation)
                                             }
                                         }
                                         .onAppear {
@@ -408,6 +420,8 @@ extension DashboardView{
                                                             }.padding(.vertical,8)
                                                             
                                                         }.frame(width:130)
+                                                            .matchedGeometryEffect(id: product.title, in: animation)
+
                                                     }
                                                     .padding(.horizontal,14)
                                                     .padding(.vertical,16)
@@ -442,6 +456,7 @@ extension DashboardView{
                     Spacer()
                 }
                 
+                
                // Spacer()
             }
         }
@@ -451,5 +466,5 @@ extension DashboardView{
 
 
 #Preview {
-    DashboardView(cartModel: CartViewModel())
+    DashboardView(cartModel: CartViewModel(), presentSideMenu: .constant(false))
 }

@@ -15,7 +15,7 @@ struct SearchResultView: View {
     
     @State var isFilterPresent = false
     @State var openProductView = false
-
+    @Binding var presentSideMenu: Bool
     
     var body: some View {
         
@@ -24,9 +24,10 @@ struct SearchResultView: View {
             VStack{
                 HStack{
                     Button{
-                        presentationMode.wrappedValue.dismiss()
+//                        presentationMode.wrappedValue.dismiss()
+                        presentSideMenu.toggle()
                     } label: {
-                        Image("backImage")
+                        Image("menu")
                             .resizable()
                             .frame(width: 32, height: 32)
                     }
@@ -192,5 +193,5 @@ struct SearchResultView: View {
 }
 
 #Preview {
-    SearchResultView()
+    SearchResultView(presentSideMenu: .constant(false))
 }

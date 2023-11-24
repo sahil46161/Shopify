@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Lottie
 
 struct CartView: View {
     
@@ -15,6 +16,11 @@ struct CartView: View {
     let animation: Namespace.ID
 //    @StateObject var cartModel = CartViewModel()
     @EnvironmentObject var cartModel: CartViewModel
+    
+    @State private var showAlertForAll = false
+    @State private var showAlertForSingleDelete = false
+    
+    
     
     var body: some View {
         NavigationView(content: {
@@ -35,98 +41,133 @@ struct CartView: View {
                         .font(.custom(Constant.AppFonts.Roboto_Medium, size: 16))
                     
                     Spacer()
-                    Button{
-                        
-                        
-                        
-                    } label: {
-                       Image("trash")
-                            .foregroundStyle(.black)
+                    if cartModel.cartItems.count > 0{
+                        Button{
+                            showAlertForAll = true
+                            
+                        } label: {
+                           Image("trash")
+                                .foregroundStyle(.black)
+                        }
+                        .alert("Are you sure want to delete all items from your cart?", isPresented: $showAlertForAll) {
+                            Button("Clear", role: .destructive) {
+                                withAnimation {
+                                    cartModel.cartItems.removeAll()
+                                }
+                                
+                            }
+    //                        Button("Cancel",role:.none){}
+                        }
                     }
+                    
+              
                     
                 }.padding(.horizontal, 16)
                 
-                ScrollView(showsIndicators: false, content: {
+                if cartModel.cartItems.isEmpty{
                     
-                    ForEach(cartModel.cartItems.indices,id: \.self) { item in
-                        HStack{
-                            VStack{
-//                                Spacer()
-                                ImageView(urlString: Constant.Endpoints.getRandomImage100x100)
-                                    .frame(width: 85,height: 85)
-                                    .cornerRadius(radius: 8)
-                            }
-                            .frame(width: 85,height: 87)
-                            .overlay(RoundedRectangle(cornerRadius: 8).stroke(.black.opacity(0.1), lineWidth: 1))
-                            .background(Color.appColor.lightGray)
+                    VStack(content: {
+                        
+                        LottieView(animation: .named("emptyCart"))
+                            .looping()
                             
-                            
-                            VStack(spacing: 0){
-                                HStack(content: {
-                                    Text(cartModel.cartItems[item].product?.title ?? "NA")
-                                        .font(.custom(Constant.AppFonts.Roboto_Medium, size: 16))
-                                        .foregroundStyle(Color.black)
-                                    Spacer()
-                                   
-                                }).padding(.vertical,8)
-                                VStack(content: {
-                                    
+                    })
+                    Spacer()
+                }else{
+                    ScrollView(showsIndicators: false, content: {
+                        
+                        ForEach(cartModel.cartItems.indices,id: \.self) { item in
+                            HStack{
+                                VStack{
+    //                                Spacer()
+                                    ImageView(urlString: Constant.Endpoints.getRandomImage100x100)
+                                        .frame(width: 85,height: 85)
+                                        .cornerRadius(radius: 8)
+                                }
+                                .frame(width: 85,height: 87)
+                                .overlay(RoundedRectangle(cornerRadius: 8).stroke(.black.opacity(0.1), lineWidth: 1))
+                                .background(Color.appColor.lightGray)
+                                
+                                
+                                VStack(spacing: 0){
                                     HStack(content: {
-                                        Text("USD 40")
-                                            .font(.custom(Constant.AppFonts.Roboto_Regular, size: 14))
+                                        Text(cartModel.cartItems[item].product?.title ?? "NA")
+                                            .font(.custom(Constant.AppFonts.Roboto_Medium, size: 16))
                                             .foregroundStyle(Color.black)
                                         Spacer()
+                                       
+                                    }).padding(.vertical,8)
+                                    VStack(content: {
+                                        
+                                        HStack(content: {
+                                            Text("USD 40")
+                                                .font(.custom(Constant.AppFonts.Roboto_Regular, size: 14))
+                                                .foregroundStyle(Color.black)
+                                            Spacer()
+                                        })
                                     })
-                                })
-                                HStack(content: {
-                                    Button{
-                                        if cartModel.cartItems[item].count > 1{
-                                            cartModel.cartItems[item].count -= 1
+                                    HStack(content: {
+                                        Button{
+                                            if cartModel.cartItems[item].count > 1{
+                                                cartModel.cartItems[item].count -= 1
+                                            }
+                                        } label: {
+                                          Text("-")
+                                                .foregroundStyle(Color.black)
+                                                .frame(width: 32,height: 32)
+                                                .overlay(RoundedRectangle(cornerRadius: 8).stroke(.black.opacity(0.2), lineWidth: 1.5))
+                                                
                                         }
-                                    } label: {
-                                      Text("-")
-                                            .foregroundStyle(Color.black)
-                                            .frame(width: 32,height: 32)
-                                            .overlay(RoundedRectangle(cornerRadius: 8).stroke(.black.opacity(0.2), lineWidth: 1.5))
-                                            
-                                    }
-                                    
-                                    Text("\(cartModel.cartItems[item].count)")
-                                        .font(.custom(Constant.AppFonts.Roboto_Medium, size: 16))
-                                        .foregroundStyle(Color.black).padding(.horizontal,8)
-                                    Button{
-                                        cartModel.cartItems[item].count += 1
+                                        
+                                        Text("\(cartModel.cartItems[item].count)")
+                                            .font(.custom(Constant.AppFonts.Roboto_Medium, size: 16))
+                                            .foregroundStyle(Color.black).padding(.horizontal,8)
+                                        Button{
+                                            cartModel.cartItems[item].count += 1
 
-                                    } label: {
-                                      Text("+")
-                                            .foregroundStyle(Color.black)
-                                            .frame(width: 32,height: 32)
-                                            .overlay(RoundedRectangle(cornerRadius: 8).stroke(.black.opacity(0.2), lineWidth: 1.5))
+                                        } label: {
+                                          Text("+")
+                                                .foregroundStyle(Color.black)
+                                                .frame(width: 32,height: 32)
+                                                .overlay(RoundedRectangle(cornerRadius: 8).stroke(.black.opacity(0.2), lineWidth: 1.5))
+                                                
+                                        }
+                                        Spacer()
+                                        Button{
+                                            showAlertForSingleDelete = true
                                             
-                                    }
+                                            
+                                        } label: {
+                                           Image("trash")
+                                                .resizable()
+                                                .frame(width: 20, height: 20)
+                                                .foregroundStyle(Color.black.opacity(0.5))
+                                        }
+                                        .alert("Are you sure want to delete \(cartModel.cartItems[item].product?.title ?? "")?", isPresented: $showAlertForSingleDelete) {
+                                            Button("Delete", role: .destructive) {
+                                                cartModel.cartItems = cartModel.cartItems.filter{$0.product?.id !=                                             cartModel.cartItems[item].product?.id}
+                                            }
+                                            
+                                            Button("Cancel", role: .cancel) {
+                                                //
+                                            }
+
+                                        }
+                                       
+                                    }).padding(.vertical,8)
+                                    
                                     Spacer()
-                                    Button{
-                                        cartModel.cartItems = cartModel.cartItems.filter{$0.product?.id !=                                             cartModel.cartItems[item].product?.id}
-                                        
-                                        
-                                    } label: {
-                                       Image("trash")
-                                            .resizable()
-                                            .frame(width: 20, height: 20)
-                                            .foregroundStyle(Color.black.opacity(0.5))
-                                    }
-                                   
-                                }).padding(.vertical,8)
-                                
+                                }
                                 Spacer()
-                            }
-                            Spacer()
-                        }.padding(.top,32).padding(.horizontal, 16)
-                    }
+                            }.padding(.top,32).padding(.horizontal, 16)
+                        }
+                        
+                    })
                     
-                })
+                    Spacer()
+
+                }
                 
-                Spacer()
             }
             .onAppear {
                 print("here it is==>",cartModel.count)

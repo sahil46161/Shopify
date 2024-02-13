@@ -11,6 +11,10 @@ import UIKit
 struct Constant{
     struct AppImages{
         static let apppLogo = "shopifyLogo"
+        static let menu = "menu"
+        static let audioIcon = "audioIcon"
+        static let cart = "cart"
+        
     }
 
     
@@ -36,6 +40,14 @@ struct Constant{
         static let getRandomImage100x100 = "https://picsum.photos/100/100"
         static let getRandomImage300x300 = "https://picsum.photos/300/300"
         static let getRandomImage120x140 = "https://picsum.photos/120/140"
+    }
+    
+    
+    struct StringTitles {
+        static let name = "Hey, Andrea"
+        static let lookingFor = "What are you looking for today?"
+        static let audioTitle = "Audio"
+        static let modularDesign = "It's modular and designed to last"
     }
     
 }

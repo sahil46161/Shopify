@@ -7,13 +7,12 @@
 
 import SwiftUI
 
+//MARK: - Common background image-
 struct BackgroundBGView: View {
     var body: some View {
        Image("BG")
             .resizable()
-//            .scaledToFill()
             .ignoresSafeArea()
-//            .overlay(.ultraThinMaterial)
            
     }
 }

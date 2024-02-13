@@ -17,7 +17,7 @@ struct DashboardView: View {
     
     private let earphoneData = ["RMA Headphone 12C","TMA-2 Modular Headphone","TMA-4 Modular Headphone","TMA-245 ECS Headphone","R12A"]
     @Namespace private var namespace
-
+    
     @StateObject var dashboardVM = DashboardVM()
     @State private var isLoading = true
     @State private var showCartView = false
@@ -30,36 +30,24 @@ struct DashboardView: View {
     @StateObject var cartModel = CartViewModel()
     
     @State private var updateBounceCount = false
-
+    
     @Binding var presentSideMenu: Bool
-
-
-
+    
+    
+    
     var body: some View {
         
-       
         NavigationView(content: {
-            
             dashboardView
-
-            
-//            .background(Color.red)
-            
-//            .navigationBarTitle("")
-//            .navigationBarHidden(true)
         })
-//        .navigationTitle("Audio")
-//        .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
-        
         .animation(.default, value: showProductView)
         .environmentObject(cartModel)
-        
     }
     
     
     
-
+    
     
 }
 extension DashboardView{
@@ -69,14 +57,14 @@ extension DashboardView{
                 if showCartView{
                     CartView(isShowingDetail: $showProductView, animation: animation)
                         .matchedGeometryEffect(id: "Cart", in: animation)
-
+                    
                 }else{
                     if let pro = selectedProduct{
                         ProductView(selectedProduct: pro,nameSpaceID: pro.title, isShowingDetail: $showProductView, animation: animation)
                             .matchedGeometryEffect(id: pro.title, in: animation)
                     }
                 }
-              
+                
             }else{
                 VStack{
                     HStack{
@@ -84,13 +72,13 @@ extension DashboardView{
                             presentSideMenu.toggle()
                             
                         } label: {
-                            Image("menu")
+                            Image(Constant.AppImages.menu)
                                 .resizable()
                                 .frame(width: 32, height: 32)
                         }
                         Spacer()
                         
-                        Image("audioIcon")
+                        Image(Constant.AppImages.audioIcon)
                             .resizable()
                             .frame(width: 24, height: 24)
                         Text("Audio")
@@ -110,20 +98,15 @@ extension DashboardView{
                                         .offset(x:2,y : -24)
                                         .foregroundColor(.red)
                                         .font(.custom(Constant.AppFonts.Roboto_Medium, size: 14))
-
+                                    
                                 }else{
                                     Text("\(cartModel.cartItems.count > 0 ? "\(cartModel.cartItems.count)" : "")")
                                         .matchedGeometryEffect(id: "count", in: namespace)
                                         .offset(x:2,y : -16)
                                         .foregroundColor(Color.red)
                                         .font(.custom(Constant.AppFonts.Roboto_Medium, size: 14))
-
-
                                 }
-//                                LottieView(animation: .named("cart"))
-//                                    .looping()
-//                                    .frame(width: 38,height:38)
-                                Image("cart")
+                                Image(Constant.AppImages.cart)
                                     .matchedGeometryEffect(id: "Cart", in: animation)
                             })
                         }
@@ -132,27 +115,23 @@ extension DashboardView{
                     }.padding(.horizontal, 24)
                         .onAppear(perform: {
                             Task{
-                                print("now calling---=====")
                                 if dashboardVM.productsList.count == 0{
                                     try await dashboardVM.getProducts()
                                     withAnimation {
                                         self.isLoading = false
                                     }
                                 }
-                                
                             }
                         })
-                   
-                  
+                    
                     
                     ScrollView (showsIndicators: false){
                         HStack{
                             if isLoading{
                                 CustomShimmerView(width: 100, height: 32)
                             }else{
-                                Text("Hey, Andrea")
+                                Text(Constant.StringTitles.name)
                                     .font(.custom(Constant.AppFonts.Roboto_Regular, size: 16))
-                                
                             }
                             Spacer()
                         }.padding(.top,32).padding(.horizontal, 16)
@@ -161,9 +140,8 @@ extension DashboardView{
                             if isLoading{
                                 CustomShimmerView(width: UIScreen.screenWidth - 32, height: 60)
                             }else{
-                                Text("What are you looking for today?")
+                                Text(Constant.StringTitles.lookingFor)
                                     .font(.custom(Constant.AppFonts.Roboto_Bold, size: 30))
-                                
                             }
                             
                             Spacer()
@@ -174,19 +152,16 @@ extension DashboardView{
                         }else{
                             HStack {
                                 
-                                
                                 Image(systemName: "magnifyingglass")
                                     .foregroundColor(Color.black.opacity(0.3))
                                 NavigationLink(destination: SearchView(), tag: 2, selection: $nowSearch) {
                                     
                                 }
-                                
                                 TextField("Search headphone",
                                           text: $searchText,onEditingChanged: { flag in
                                     self.nowSearch = 2
                                     
                                 })
-                                
                                 .font(.custom(Constant.AppFonts.Roboto_Regular, size: 16))
                                 .padding(.horizontal,8)
                                 
@@ -197,19 +172,13 @@ extension DashboardView{
                             .padding(.horizontal, 16)
                         }
                         
-                        
-                        
-                        
-                        
-                        
-                        
                         VStack {
                             
+                            //MARK: - Horizontol categories View -
                             if isLoading{
                                 VStack{
                                     CustomShimmerView(width: UIScreen.screenWidth - 32, height: 32)
                                 }
-                                
                             }else{
                                 ScrollView(.horizontal,showsIndicators: false) {
                                     ScrollViewReader(content: { scroller in
@@ -256,11 +225,10 @@ extension DashboardView{
                                             scroller.scrollTo(self.selectedCategory, anchor: .center)
                                         }
                                     })
-                                    
-                                    
                                 }.padding(.vertical,8)
                             }
                             
+                            //MARK: - Product listing View -
                             if isLoading{
                                 CustomShimmerView(width: UIScreen.screenWidth - 32, height: 140)
                             }else{
@@ -290,13 +258,6 @@ extension DashboardView{
                                                                         self.cartModel.cartItems.append(CartItemsModel(id: product.id, count: 1, product: product))
                                                                         self.selectedProduct = product
                                                                     }
-                                                                 
-    //                                                                showCartView = false
-    //                                                                withAnimation {
-    //                                                                    showProductView = true
-                                                                        //                                                                        proxy.scrollTo(self.selectedProduct?.id, anchor: .center)
-    //                                                                }
-                                                                    
                                                                     
                                                                     withAnimation(.spring(response: 0.3, dampingFraction: 0.3, blendDuration: 0.3)) {
                                                                         self.updateBounceCount = true
@@ -305,11 +266,8 @@ extension DashboardView{
                                                                                 self.updateBounceCount = false
                                                                             }
                                                                         }
-                                                                        
                                                                     }
                                                                 }
-                                                                
-                                                           
                                                             } label: {
                                                                 Text("\(cartModel.cartItems.filter({$0.product?.id == product.id}).count > 0 ? "Added" : "Add to cart")")
                                                                     .foregroundStyle(Color.appColor.defaultGreen)
@@ -321,7 +279,6 @@ extension DashboardView{
                                                     }
                                                     Spacer()
                                                     VStack{
-                                                        //                                           Image("headphone")
                                                         ImageView(urlString: Constant.Endpoints.getRandomImage100x100)
                                                             .frame(width: 100, height: 100)
                                                             .cornerRadius(8)
@@ -337,7 +294,6 @@ extension DashboardView{
                                                 .cornerRadius(8)
                                                 
                                                 .id(product.title)
-//                                                .matchedGeometryEffect(id: product.title, in: animation)
                                             }
                                         }
                                         .onAppear {
@@ -354,15 +310,12 @@ extension DashboardView{
                             HStack {
                                 if isLoading{
                                     CustomShimmerView(width: 100, height: 32)
-                                    // .shimmering()
                                 }else{
                                     Text("Featured Products")
                                         .font(.custom(Constant.AppFonts.Roboto_Regular, size: 16))
-                                    
                                 }
                                 Spacer()
                                 Button(action: {
-                                    //
                                     
                                 }, label: {
                                     if isLoading{
@@ -371,7 +324,6 @@ extension DashboardView{
                                         Text("See All")
                                             .font(.custom(Constant.AppFonts.Roboto_Regular, size: 16))
                                             .foregroundStyle(Color.gray.opacity(0.6))
-                                        
                                     }
                                 })
                                 
@@ -421,7 +373,7 @@ extension DashboardView{
                                                             
                                                         }.frame(width:130)
                                                             .matchedGeometryEffect(id: product.title, in: animation)
-
+                                                        
                                                     }
                                                     .padding(.horizontal,14)
                                                     .padding(.vertical,16)
@@ -430,10 +382,7 @@ extension DashboardView{
                                                     }
                                                     .cornerRadius(8)
                                                     .id(product.title)
-                                                    
                                                 }
-                                                
-                                                
                                             }
                                         }
                                         .onAppear {
@@ -449,15 +398,9 @@ extension DashboardView{
                         .padding(.vertical,16)
                         .padding(.horizontal, 16)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        //                        .overlay(RoundedRectangle(cornerRadius: 12).stroke(.black.opacity(0.2), lineWidth: 1.5))
                     }
-//                        .ignoresSafeArea(edges: .all)
-                    
                     Spacer()
                 }
-                
-                
-               // Spacer()
             }
         }
     }

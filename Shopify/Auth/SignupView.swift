@@ -17,16 +17,16 @@ struct SignupView: View {
         
         NavigationView(content: {
             ZStack(content: {
+                //MARK: - Background Image-
                 BackgroundBGView()
                 VStack(content: {
                     ScrollView {
                         VStack(content: {
-                            //                    Spacer()
-                            Text("Audio")
+                            Text(Constant.StringTitles.audioTitle)
                                 .font(.custom(Constant.AppFonts.Roboto_Bold, size: 54))
                                 .foregroundStyle(.white)
                                 .padding(.top,32)
-                            Text("It's modular and designed to last")
+                            Text(Constant.StringTitles.modularDesign)
                                 .font(Font.custom(Constant.AppFonts.Roboto_Bold, size: 14))
                                 .foregroundStyle(.white)
                                 .padding(.bottom,32)
@@ -87,7 +87,6 @@ struct SignupView: View {
                                     HStack {
                                         Button(action: {
                                             
-                                            
                                         }) {
                                             HStack {
                                                 Image("appleIcon")
@@ -95,8 +94,6 @@ struct SignupView: View {
                                                     .scaledToFit()
                                             }
                                         }
-                                        
-                                        
                                         
                                     }.frame(width: 24, height: 24)
                                         .padding()
@@ -113,13 +110,9 @@ struct SignupView: View {
                                             }
                                         }
                                         
-                                        
-                                        
                                     } .frame(width: 24, height: 24)
                                         .padding()
                                         .background(Rectangle().fill(Color.white).cornerRadius(12))
-                                    
-                                    
                                     
                                     HStack {
                                         Button(action: {
@@ -132,17 +125,11 @@ struct SignupView: View {
                                             }
                                         }
                                         
-                                        
-                                        
                                     }   .frame(width: 24, height: 24)
                                         .padding()
                                         .background(Rectangle().fill(Color.white).cornerRadius(12))
                                 }
-                                
-                                
                             }
-                            
-                            
                             
                             HStack(spacing: 8, content: {
                                 Text("If you have an account?")
@@ -151,8 +138,6 @@ struct SignupView: View {
                                     self.presentationMode.wrappedValue.dismiss()
                                 }.foregroundColor(Color.appColor.defaultGreen)
                                     .font(.custom(Constant.AppFonts.Roboto_Bold, size: 15))
-                                
-                                
                             })
                             .padding(.top,8)
                             .font(.custom(Constant.AppFonts.Roboto_Regular, size: 15))

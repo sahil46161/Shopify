@@ -13,7 +13,7 @@ struct LoginView: View {
     
     @State private var messageStr = ""
     @State private var showAlert = false
-
+    
     
     @State var nowLogin : Int? = nil
     
@@ -21,18 +21,17 @@ struct LoginView: View {
         NavigationView{
             
             ZStack(content: {
-               BackgroundBGView()
+                BackgroundBGView()
                 VStack(spacing: 16, content: {
-                    Text("Audio")
+                    Text(Constant.StringTitles.audioTitle)
                         .font(.custom(Constant.AppFonts.Roboto_Bold, size: 54))
                         .foregroundStyle(.white)
                         .padding(.top,32)
-                    Text("It's modular and designed to last")
+                    Text(Constant.StringTitles.modularDesign)
                         .font(Font.custom(Constant.AppFonts.Roboto_Bold, size: 14))
                         .foregroundStyle(.white)
                         .padding(.bottom,32)
                     Spacer()
-                    
                     
                     VStack {
                         HStack {
@@ -82,11 +81,7 @@ struct LoginView: View {
                                     }
                                 }
                                 .font(.custom(Constant.AppFonts.Roboto_Bold, size: 18))
-                                
                             }
-                            
-                          
-                            
                             
                         }.padding()
                             .background(Rectangle().fill(Color.appColor.defaultGreen).cornerRadius(12))
@@ -99,17 +94,11 @@ struct LoginView: View {
                         Button("Sign Up here"){
                             
                         }.foregroundColor(Color.appColor.defaultGreen)
-                            
-                        
                     })
                     .padding(.top,8)
                     .font(.custom(Constant.AppFonts.Roboto_Regular, size: 16))
                 })
-                
             })
-           // BackgroundBGView()
-               
-                
         }.navigationBarBackButtonHidden(true)
         
         

@@ -17,9 +17,6 @@ struct ImageView: View {
     }
     
     var body: some View {
-//        Image(uiImage: imageViewModel.image ?? UIImage())
-//            .resizable()
-//            .scaledToFill()
         Image("random1")
             .resizable()
             .scaledToFill()

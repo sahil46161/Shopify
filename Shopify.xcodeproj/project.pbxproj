@@ -54,6 +54,8 @@
 		BAA1D5E52B0F8BB400599C75 /* emptyScreen.json in Resources */ = {isa = PBXBuildFile; fileRef = BAA1D5E42B0F8BB400599C75 /* emptyScreen.json */; };
 		BABE93CD2B0E24D500321535 /* ProductViewModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABE93CC2B0E24D500321535 /* ProductViewModal.swift */; };
 		BABE93CF2B0E251800321535 /* ProductCommentModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABE93CE2B0E251800321535 /* ProductCommentModal.swift */; };
+		BAC6B6FA2B7B994A00DBA933 /* ImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC6B6F92B7B994A00DBA933 /* ImageViewModel.swift */; };
+		BAC6B71A2B7B9DFF00DBA933 /* APIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC6B7192B7B9DFF00DBA933 /* APIHandler.swift */; };
 		BAD3B9702B0F3036002313D6 /* CartItemsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD3B96F2B0F3036002313D6 /* CartItemsModel.swift */; };
 		BAD3B9722B0F32A0002313D6 /* CartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD3B9712B0F32A0002313D6 /* CartViewModel.swift */; };
 		BAD5AF782B07A2AF002FC187 /* OverlayModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD5AF772B07A2AF002FC187 /* OverlayModifier.swift */; };
@@ -127,6 +129,8 @@
 		BAA1D5E42B0F8BB400599C75 /* emptyScreen.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = emptyScreen.json; sourceTree = "<group>"; };
 		BABE93CC2B0E24D500321535 /* ProductViewModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModal.swift; sourceTree = "<group>"; };
 		BABE93CE2B0E251800321535 /* ProductCommentModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCommentModal.swift; sourceTree = "<group>"; };
+		BAC6B6F92B7B994A00DBA933 /* ImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewModel.swift; sourceTree = "<group>"; };
+		BAC6B7192B7B9DFF00DBA933 /* APIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
 		BAD3B96F2B0F3036002313D6 /* CartItemsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemsModel.swift; sourceTree = "<group>"; };
 		BAD3B9712B0F32A0002313D6 /* CartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewModel.swift; sourceTree = "<group>"; };
 		BAD5AF772B07A2AF002FC187 /* OverlayModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayModifier.swift; sourceTree = "<group>"; };
@@ -273,6 +277,7 @@
 		BA2172F32B05FBC200AC51ED /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				BAC6B6FB2B7B998C00DBA933 /* APIHandler */,
 				BA2173112B060B4000AC51ED /* Extensions */,
 				BA2172F42B05FBC800AC51ED /* Fonts */,
 			);
@@ -350,6 +355,7 @@
 			isa = PBXGroup;
 			children = (
 				BA8898912B0C7BFC00DC0886 /* ProductModel.swift */,
+				BAC6B6F92B7B994A00DBA933 /* ImageViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -393,6 +399,14 @@
 				BABE93CE2B0E251800321535 /* ProductCommentModal.swift */,
 			);
 			path = Modal;
+			sourceTree = "<group>";
+		};
+		BAC6B6FB2B7B998C00DBA933 /* APIHandler */ = {
+			isa = PBXGroup;
+			children = (
+				BAC6B7192B7B9DFF00DBA933 /* APIHandler.swift */,
+			);
+			path = APIHandler;
 			sourceTree = "<group>";
 		};
 		BAD3B96C2B0F2FBA002313D6 /* ViewModel */ = {
@@ -596,9 +610,11 @@
 				BA21731A2B06310C00AC51ED /* ProfileImageView.swift in Sources */,
 				BA2172C12B05E33500AC51ED /* ShopifyApp.swift in Sources */,
 				BAD5AF7A2B07A443002FC187 /* BottomPopupView.swift in Sources */,
+				BAC6B6FA2B7B994A00DBA933 /* ImageViewModel.swift in Sources */,
 				BA1CE5772B10A16900921F48 /* SideMenu.swift in Sources */,
 				BA8898942B0C7C2500DC0886 /* DashboardVM.swift in Sources */,
 				BA69C5B52B0B99BC0085A2C4 /* CartView.swift in Sources */,
+				BAC6B71A2B7B9DFF00DBA933 /* APIHandler.swift in Sources */,
 				BA2172EF2B05E72700AC51ED /* Constant.swift in Sources */,
 				BA8898A32B0C92A300DC0886 /* CustomShimmerView.swift in Sources */,
 			);
@@ -780,6 +796,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.infoStride.app.Shopify;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -810,6 +829,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.infoStride.app.Shopify;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

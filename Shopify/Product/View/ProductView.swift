@@ -28,7 +28,7 @@ struct ProductView: View {
     
     @EnvironmentObject var cartModel: CartViewModel
 
-    
+
     
     var body: some View {
         NavigationView(content: {
@@ -175,16 +175,11 @@ struct ProductView: View {
 
         }).navigationBarBackButtonHidden(true)
             .animation(.default, value: openCart)
-    
-//            .navigationBarTitleDisplayMode(.inline)
-//                 .navigationViewStyle(.stack)
             
     }
 }
 
-//#Preview {
-//    ProductView(isShowingDetail: .constant(false))
-//}
+
 struct ProductView_Previews: PreviewProvider {
     
     struct TestView: View {
@@ -216,11 +211,13 @@ extension ProductView{
                                         Color.appColor.lightGray
                                     }
                                     .cornerRadius(10)
-                                    .frame(height: 300)
-                                    .padding(.horizontal, 20)
+                                    .frame(height: 250)
+                                    .padding(.horizontal, 8)
                             }
                         }
                     }.padding(.vertical,8)
+                    Spacer()
+                    
                     
                 })
                 

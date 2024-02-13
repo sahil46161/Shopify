@@ -14,27 +14,6 @@ struct ContentView: View {
     @State var isClicked = false
     var body: some View {
                LoginView()
-//        VStack {
-//            if !isClicked {
-//                Circle()
-//                    .matchedGeometryEffect(id: "circle", in: namespace)
-//                    .frame(maxWidth: 100, maxHeight: 100)
-//            }
-//            Spacer()
-//            if isClicked {
-//                HStack{
-//                    Rectangle()
-//                        .matchedGeometryEffect(id: "circle", in: namespace)
-//                        .frame(maxWidth: 80, maxHeight: 80)
-////                    Spacer()
-//                }
-//            }
-//        }
-//        .onTapGesture {
-//            withAnimation(.spring(response: 0.8, dampingFraction: 0.5, blendDuration: 0.5)) {
-//                isClicked.toggle()
-//            }
-//        }
     }
     
 }

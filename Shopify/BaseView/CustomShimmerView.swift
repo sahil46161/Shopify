@@ -20,16 +20,13 @@ struct CustomShimmerView: View {
     
     var body: some View {
         VStack(spacing:0){
-//            HStack{
                 ShimmerScope(isAnimating: .constant(true)) {
                     VStack() {
                         ShimmerElement(width: width, height: height)
                             .cornerRadius(8)
                     }
                 }
-//            }
         }.frame(width: width, height: height)
-//            .padding()
           
     }
 }

@@ -13,13 +13,15 @@ class ProductViewModal : ObservableObject{
     
     func getproductComments() async throws{
         guard let url = URL(string: Constant.Endpoints.getCommentsURL) else { return /*productsList*/ }
-        let urlRequest = URLRequest(url: url)
-        let (data, response) = try await URLSession.shared.data(for: urlRequest)
-        guard (response as? HTTPURLResponse)?.statusCode == 200 else { fatalError("Error while fetching data") }
-        let comments = try JSONDecoder().decode([ProductComments].self, from: data)
-        
-        DispatchQueue.main.async {
-            self.comments = comments // published obeservers working on main thread
+        NetworkManager.shared.fetchData(from: url) { (result: Result<[ProductComments], Error>) in
+            switch result {
+            case .success(let products):
+                DispatchQueue.main.async {
+                    self.comments = products
+                }
+            case .failure(let error):
+                print("Error fetching products: \(error)")
+            }
         }
         
     }

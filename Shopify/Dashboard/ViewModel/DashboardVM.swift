@@ -17,7 +17,6 @@ class DashboardVM : ObservableObject{
     //MARK: - Get random products from API-
     func getProducts()async throws {
            guard let url = URL(string: Constant.Endpoints.getProductURL) else {
-               // Handle invalid URL
                return
            }
            

@@ -10,33 +10,33 @@ import Lottie
 
 struct DashboardView: View {
     
+    //MARK: - Variables declaration -
     @State private var searchText = ""
     @State private var nowSearch : Int? = nil
+    
+    //MARK: - static categories -
     private let categories = ["Apple","Boat","Skull Candy","MI","Samsung","OnePlus+"]
     @State private var selectedCategory = "Apple"
-    
     private let earphoneData = ["RMA Headphone 12C","TMA-2 Modular Headphone","TMA-4 Modular Headphone","TMA-245 ECS Headphone","R12A"]
     @Namespace private var namespace
     
+    //MARK: - Dashboard View modal instance -
     @StateObject var dashboardVM = DashboardVM()
     @State private var isLoading = true
     @State private var showCartView = false
-    
     @State private var selectedProduct : Product?
     @State private var showProductView = false
+    
+    //MARK: - namespace for geometry effect -
     @Namespace var animation
     
-    
     @StateObject var cartModel = CartViewModel()
-    
     @State private var updateBounceCount = false
-    
     @Binding var presentSideMenu: Bool
     
     
-    
+    //MARK: - Main View -
     var body: some View {
-        
         NavigationView(content: {
             dashboardView
         })
@@ -45,14 +45,14 @@ struct DashboardView: View {
         .environmentObject(cartModel)
     }
     
-    
-    
-    
-    
 }
+
+
 extension DashboardView{
+    //MARK: - Dashboard View -
     var dashboardView : some View{
         ZStack{
+            //MARK: - Show cart view with geometry effect -
             if showProductView{
                 if showCartView{
                     CartView(isShowingDetail: $showProductView, animation: animation)
@@ -177,6 +177,7 @@ extension DashboardView{
                             //MARK: - Horizontol categories View -
                             if isLoading{
                                 VStack{
+                                    //MARK: - Custom shimmring effect until data comes from API -
                                     CustomShimmerView(width: UIScreen.screenWidth - 32, height: 32)
                                 }
                             }else{
